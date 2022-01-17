@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Contact Us</h1>
+<p>We will do out best to get back to you as soon as we can</p>
+<a href="index.html">Home</a>
+<!--'{"name":"John", "age":30, "car":null}'-->
+<form action="#">
+    <fieldset>
+        <legend> Fill this form</legend>
+        <div>
+            <label for="fullName" ><b>Full Name</b></label>
+            <input type="text" name="fullName" id="fullName" required>
+        </div>
+        <br>
+        <div>
+            <label for="phoneNumber"><b>Phone Number</b></label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" required>
+        </div>
+        <br>
+        <div>
+            <label><b>Gender : </b></label>
+
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="male" value="male" required>
+
+            <label for="female">Female</label>
+            <input type="radio" name="gender" id="female" value="female" required>
+        </div>
+        <br>
+        <div>
+            <label for="dob"><b>Date of Birth</b></label>
+            <input type="date" name="dob" id="dob">
+        </div>
+        <br>
+        <div>
+            <label><b>Preferred way to contact you : </b></label>
+
+            <label for="phone">Phone</label>
+            <input type="checkbox" name="preferredWayToContact" id="phone" value="phone" required>
+
+            <label for="email">Email</label>
+            <input type="checkbox" name="preferredWayToContact" id="email" value="email" required>
+        </div>
+        <br>
+        <div>
+            <label for="">How do you rate our website?</label>
+            <select name="rating" required>
+                <option value="4">Excellent</option>
+                <option value="3">Very Good</option>
+                <option value="2">Good</option>
+                <option value="1">Poor</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="message"><b>Message</b></label><br>
+            <textarea cols="25" rows="5" name="message" id="message" required></textarea>
+        </div>
+
+        <div>
+            <input type="submit" value="Send">
+            <input type="reset" value="Clear">
+        </div>
+    </fieldset>
+</form>
+
+</body>
+</html>
