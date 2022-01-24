@@ -1,0 +1,60 @@
+header[role = banner] {
+    background-color: burlywood;
+    text-align: center;
+    padding: 10px;
+}
+
+li[href="qu.edu.qa"] {
+    list-style: none;
+    margin: 10px;
+
+}
+
+.pliu{
+
+}
+nav[role=navigation] a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+nav[role=navigation] a:hover{
+    text-decoration: underline;
+    background-color: brown;
+}
+
+h3{
+    background-color: lightblue;
+    padding: 15px;
+    color: black;
+}
+p{
+    font-family: "Noto Sans Modi";
+    font-size: 1.2rem;
+
+}
+
+/*Bigger Screen*/
+@media screen and (min-width: 768px){
+    nav[role=navigation] ul{
+        display: flex;
+    }
+
+    .wrapper{
+        display: flex;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
