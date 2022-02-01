@@ -10,7 +10,7 @@ html, body, .container {
 }
 .container {
     display: grid;
-    grid-template-rows: 1fr 1fr 4fr 0.5fr;
+    grid-template-rows: 1fr auto 4fr 0.5fr;
     grid-template-areas:
         "header"
         "nav"
@@ -92,21 +92,14 @@ footer {
 }
 
 @media screen and (min-width: 40rem) {
-    nav ul {
-        background-color: darkblue;
-        height: 100%;
-    }
 
     nav ul {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        gap: 10px;
 
     }
-
     nav ul > * {
-        background-color: blue;
         flex: 1;
     }
 
@@ -120,7 +113,6 @@ footer {
         "header     main"
         "nav        main"
         "footer     footer";
-        gap: 10px;
     }
 
     nav ul {
