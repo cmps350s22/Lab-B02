@@ -4,27 +4,20 @@
     box-sizing: border-box;
 }
 
-body {
-    line-height: 1.5rem;
-    height: 100vh;
-}
-
-.container {
+html, body, .container {
     height: 100%;
-    /*background-color: red;*/
+    line-height: 1.5rem;
+}
+.container {
     display: grid;
-    grid-template-rows: 0.15fr 0.2fr auto 0.05fr;
-
+    grid-template-rows: 1fr 1fr 4fr 0.5fr;
     grid-template-areas:
         "header"
         "nav"
         "main"
         "footer";
 }
-
 header {
-    /*background-color: blue;*/
-    min-height: 100px;
     display: grid;
     place-items: center;
     grid-area: header;
@@ -56,10 +49,6 @@ nav a {
 
 }
 
-img {
-    width: 200px;
-    height: 200px;
-}
 
 .title {
     text-align: center;
@@ -74,14 +63,20 @@ main {
     grid-area: main;
 }
 
+img {
+    width: 20%;
+    height: 60%;
+    border: white 1px solid;
+}
+
 .btn-buy {
     background-color: orange;
     color: white;
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
     border-radius: 0.5rem;
     transition: 500ms;
     border: none;
+    margin-bottom: 1.5rem;
 }
 
 .btn-buy:hover {
@@ -97,23 +92,26 @@ footer {
 }
 
 @media screen and (min-width: 40rem) {
-    nav ul{
+    nav ul {
         background-color: darkblue;
         height: 100%;
     }
-   nav ul{
-       display: flex;
-       justify-content: flex-end;
-       align-items: center;
-       gap: 10px;
 
-   }
-    nav ul > *{
+    nav ul {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+
+    }
+
+    nav ul > * {
         background-color: blue;
         flex: 1;
     }
 
 }
+
 @media screen and (min-width: 60rem) {
     .container {
         grid-template-rows: 0.15fr auto 0.10fr;
@@ -124,7 +122,8 @@ footer {
         "footer     footer";
         gap: 10px;
     }
-    nav ul{
+
+    nav ul {
         flex-direction: column;
     }
 
@@ -132,11 +131,9 @@ footer {
     /*    grid-column: 2/3;*/
     /*    grid-row: 1/3;*/
     /*}*/
-
     /*nav {*/
     /*    grid-column: 1/2;*/
     /*}*/
-
     /*footer {*/
     /*    grid-column: 1/3;*/
     /*}*/
