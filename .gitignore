@@ -102,5 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
-.DS_Store
+*.DS_Store
 Lab 4 - CSS 2/Tutorial/Base Codes/Excercise-1/.idea/workspace.xml
