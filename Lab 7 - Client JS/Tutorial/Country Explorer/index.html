@@ -32,7 +32,8 @@
             <div class="form-group">
                 <lebel>Select a country</lebel>
 
-                <select name="country" id="country">
+                <select name="country" id="country"
+                        onchange="handleCountryChange(this.value)">
                     <!--load the countries-->
                 </select>
             </div>
