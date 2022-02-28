@@ -9,11 +9,13 @@ form.addEventListener('submit', addCensus)
 
 window.onload = async ()=>{
     await showCensusList();
+    window.deleteCensus = deleteCensus
 }
 
 async function addCensus(e) {
     e.preventDefault()
     const census = formToObject(e.target)
+    census.id = Date.now()
     const response = await repo.addCensus(census)
     await showCensusList()
 }
@@ -41,11 +43,15 @@ function censusToHTMLRow(census){
             <td>${census.population}</td>
             <td>
                 <i class="fa fa-edit">Edit</i>
-                <i class="fa fa-trash">Delete</i>
-                
+                <i class="fa fa-trash" onclick="deleteCensus('${census.id}')">Delete</i>
             </td>
         </tr>
     `
+}
+
+async function deleteCensus(id) {
+    await repo.deleteCensus(id)
+    await showCensusList()
 }
 function formToObject(form) {
     const formData = new FormData(form)

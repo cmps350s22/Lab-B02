@@ -1,5 +1,4 @@
 const db = new Localbase('db')
-
 export class CensusRepo {
     addCensus(census) {
         try {
