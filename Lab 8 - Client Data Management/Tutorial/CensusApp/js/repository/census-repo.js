@@ -1,6 +1,6 @@
 const db = new Localbase('db')
 
-class CensusRepo {
+export class CensusRepo {
     addCensus(census) {
         try {
             return db.collection('census').add(census)
