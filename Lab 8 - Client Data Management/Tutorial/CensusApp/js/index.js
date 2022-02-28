@@ -6,6 +6,7 @@ const countriesTable = document.querySelector('#countries')
 const noOfRowsDD = document.querySelector('#noOfRows')
 const form = document.querySelector('#form')
 form.addEventListener('submit', addCensus)
+noOfRowsDD.addEventListener('change', showCensusList)
 
 window.onload = async ()=>{
     await showCensusList();
@@ -15,7 +16,7 @@ window.onload = async ()=>{
 async function addCensus(e) {
     e.preventDefault()
     const census = formToObject(e.target)
-    census.id = Date.now()
+    census.id = Date.now().toString()
     const response = await repo.addCensus(census)
     await showCensusList()
 }
