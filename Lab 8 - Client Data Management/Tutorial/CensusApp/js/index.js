@@ -7,17 +7,22 @@ const noOfRowsDD = document.querySelector('#noOfRows')
 const form = document.querySelector('#form')
 form.addEventListener('submit', addCensus)
 
+window.onload = async ()=>{
+    await showCensusList();
+}
+
 async function addCensus(e) {
     e.preventDefault()
     const census = formToObject(e.target)
     const response = await repo.addCensus(census)
-    console.log(response)
+    await showCensusList()
 }
 
 async function showCensusList() {
     const noOfRows = parseInt(noOfRowsDD.value)
     const allCensus = await repo.getAllCensus(noOfRows)
-    const censusHTMLRows = allCensus.map(census => censusToHTMLRow(census))
+
+    const censusHTMLRows = allCensus.map(census => censusToHTMLRow(census)).join(' ')
 
     countriesTable.innerHTML = `
         <tr>
@@ -31,7 +36,15 @@ async function showCensusList() {
 
 function censusToHTMLRow(census){
     return `
-        
+        <tr>
+            <td>${census.country}</td>
+            <td>${census.population}</td>
+            <td>
+                <i class="fa fa-edit">Edit</i>
+                <i class="fa fa-trash">Delete</i>
+                
+            </td>
+        </tr>
     `
 }
 function formToObject(form) {
