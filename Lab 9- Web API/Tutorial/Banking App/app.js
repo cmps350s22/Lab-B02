@@ -8,6 +8,12 @@ const port = process.env.PORT || 3000
     http://www.qu.edu.qa/students
     http://www.qu.edu.qa/courses
  */
+
+//http://localhost:3000/api/welcome
+//http://localhost:3000/api/accounts
+//http://localhost:3000/api/accounts/1001
+//http://localhost:3000/api/accounts/?sort=dec & gender=female
+
 app.get('/api/welcome', (req, res) => {
     res.send('welcome to our banking website')
 })
@@ -23,14 +29,20 @@ app.get('/api/accounts', (req, res)=>{
             accountNo : 125
         }
     ]
-    res.json(accounts)
+    res.json(req.query)
 })
+
+
+// npm i -g nodemon
+// sudo npm i -g nodemon
+
 
 app.get('/api/accounts/:accountNo', (req, res)=>{
     res.json(req.params.accountNo)
 })
-//http://localhost:3000/api/welcome
-//http://localhost:3000/api/accounts
+
+
+
 
 // app.post()
 // app.put()
@@ -38,5 +50,5 @@ app.get('/api/accounts/:accountNo', (req, res)=>{
 
 
 app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`)
+    console.log(`server started at http://localhost:${port}`)
 })
