@@ -41,8 +41,7 @@
   },
   {
     "accountNo": 9002,
-    "acctType": "Saving",
-    "balance": 18000,
-    "minimumBalance": 6000
+    "acctType": "Current",
+    "balance": 18000
   }
 ]

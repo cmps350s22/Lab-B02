@@ -6,7 +6,7 @@ export default class AccountsRepo {
     async getAccounts(acctType) {
         const accounts = await fs.readJson(filePath)
         if (acctType)
-            return accounts.filter(account => account.acctType == acctType)
+            return accounts.filter(account => account.acctType.toLowerCase() === acctType.toLowerCase())
         return accounts
     }
 
