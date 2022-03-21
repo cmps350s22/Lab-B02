@@ -12,13 +12,14 @@ const port = process.env.PORT || 3000
 //http://localhost:3000/api/welcome
 //http://localhost:3000/api/accounts
 //http://localhost:3000/api/accounts/1001
-//http://localhost:3000/api/accounts/?sort=dec & gender=female
+//http://localhost:3000/api/accounts/1001/Abdulahi/100
 
 app.get('/api/welcome', (req, res) => {
     res.send('welcome to our banking website')
 })
 
-app.get('/api/accounts', (req, res)=>{
+
+app.get('/api/accounts/:acctNo/:name/:age', (req, res)=>{
     const accounts = [
         {
             name : 'Abdulahi',

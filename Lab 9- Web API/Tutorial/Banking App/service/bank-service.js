@@ -11,23 +11,27 @@ export default class BankService {
     }
 
     async getAccount(req, res) {
-
-    }
-
-    async addAccount(req, res) {
-
-    }
-
-    async updateAccount(req, res) {
-
-
+        const accountNo = req.params.acctNo
+        const account = await accountRepo.getAccount(accountNo)
+        res.json(account)
     }
 
     async deleteAccount(req, res) {
-
+        const accountNo = req.params.acctNo
+        const response = await accountRepo.deleteAccount(accountNo)
+        res.json(response)
     }
 
-    async saveAccounts(req, res) {
+    async addAccount(req, res) {
+        const account = req.body
+        const response = await accountRepo.addAccount(account)
+        res.json(response)
+    }
+
+    async updateAccount(req, res) {
+        const account = req.body
+        const response = await accountRepo.updateAccount(account)
+        res.json(response)
 
     }
 }
