@@ -13,8 +13,10 @@
   "dependencies": {
     "express": "^4.17.3",
     "fs-extra": "^10.0.1",
-    "morgan": "^1.10.0",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }
 
