@@ -5,7 +5,7 @@ const accountService = new AccountService()
 //our routes will be here
 
 router.route('/accounts')
-    .post(accountService.addAccount)
+    .get(accountService.getAccounts)
 
 
 

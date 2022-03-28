@@ -18,7 +18,7 @@ export default class AccountRepo {
 
         //This will add Account methods back to the deserialized account.
         for (const acct of accounts) {
-            if (acct.acctType === "Saving")
+            if (acct.acctType === "Current")
                 Object.setPrototypeOf(acct, CurrentAccount.prototype);
             else
                 Object.setPrototypeOf(acct, SavingAccount.prototype);
