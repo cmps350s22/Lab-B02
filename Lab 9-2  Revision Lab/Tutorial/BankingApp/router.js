@@ -6,7 +6,13 @@ const accountService = new AccountService()
 
 router.route('/accounts')
     .get(accountService.getAccounts)
+    .post(accountService.addAccount)
 
+router.route('/accounts/:acctNo')
+    .get(accountService.getAccount)
+    .delete(accountService.deleteAccount)
 
+router.route('/accounts/:acctNo/trans')
+    .post(accountService.addTransaction)
 
 export default router

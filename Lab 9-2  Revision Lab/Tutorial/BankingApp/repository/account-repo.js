@@ -39,6 +39,7 @@ export default class AccountRepo {
     async addAccount(account) {
         account.accountNo = Date.now();
         account.balance = parseInt(account.balance.toString());
+
         if (account.acctType === 'Saving')
             account.minimumBalance = 1000;
         else
