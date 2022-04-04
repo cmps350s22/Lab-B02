@@ -1,16 +1,6 @@
-//mongoose
-/*
-  {
-
-    "acctType": "Saving",
-    "balance": 8000,
-
-  },
- */
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
-
 const accountSchema = new Schema({
     acctType: {
         type: String,
@@ -20,7 +10,7 @@ const accountSchema = new Schema({
     balance: {
         type: Number,
         min: [0, 'min balance can not be negative'],
-        required: [true, 'balance can not be negative']
+        required: [true, 'balance is a required field']
     }
 })
 accountSchema.virtual('minBalance', function () {
