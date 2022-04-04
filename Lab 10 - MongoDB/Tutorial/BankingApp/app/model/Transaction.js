@@ -3,10 +3,10 @@ import Account from './account.js'
 
 const Schema = mongoose.Schema;
 const transactionSchema = new Schema({
-    acctNo : {
-        type : Schema.Types.ObjectId,
-        ref : 'Account',
-        
+    acctNo: {
+        type: Schema.Types.ObjectId,
+        ref: 'Account',
+        required: [true, 'acctNo is a required field']
     },
     transType: {
         type: String,
