@@ -60,6 +60,16 @@ class AccountService {
         }
     }
 
+    async getTransactions(req, res) {
+        try {
+            const transactions = await accountRepo.getTransactions()
+            res.json(transactions)
+        } catch (e) {
+            res.status(500).json(e)
+        }
+    }
+
+
     async getStats(req, res) {
         try {
             res.json(await accountRepo.getStats())

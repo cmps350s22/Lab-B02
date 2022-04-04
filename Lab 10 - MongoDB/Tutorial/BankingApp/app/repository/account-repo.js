@@ -1,21 +1,22 @@
 import Account from '../model/account.js'
+import Transaction from '../model/transaction.js'
 
 export default class AccountRepo {
 
     //Get account from accounts.json file
-    async getAccounts(acctType) {
+    getAccounts(acctType) {
         if (acctType && acctType != 'All')
             return Account.find({acctType})
         return Account.find();
     }
 
     //Get account by accountNo
-    async getAccount(accountNo) {
+    getAccount(accountNo) {
         return Account.findOne({_id: accountNo})
     }
 
     async addAccount(account) {
-        return Account.create(account)
+        return await Account.create(account)
     }
 
     async deleteAccount(accountNo) {
@@ -23,7 +24,7 @@ export default class AccountRepo {
     }
 
     async updateAccount(account) {
-        return Account.findOneAndUpdate(account.accountNo,account )
+        return Account.findByIdAndUpdate(account.accountNo, account)
     }
 
     async sumBalance() {
@@ -67,26 +68,26 @@ export default class AccountRepo {
         }
     }
 
-    //Save accounts to account.json file
-    async saveAccounts(accounts) {
-        return await fs.writeJson(this.accountsFilePath, accounts);
-    }
 
     async addTransaction(transaction) {
-        transaction.accountNo = parseInt(transaction.accountNo.toString());
         transaction.amount = parseInt(transaction.amount.toString());
         try {
-            const accounts = await this.getAccounts();
-            const account = accounts.find(account => account.accountNo == transaction.accountNo);
-            if (transaction.transType == 'Deposit') {
-                account.deposit(transaction.amount);
-            } else {
-                account.withdraw(transaction.amount);
-            }
-            await this.saveAccounts(accounts);
+            const account = this.getAccount(transaction.acctNo)
+
+            if (transaction.transType == 'Deposit')
+                account.balance += transaction.amount
+            else
+                account.balance -= transaction.amount
+
+            await account.save()
+            return await Transaction.create(transaction)
         } catch (err) {
             throw err;
         }
+    }
+
+    async getTransactions() {
+        return Transaction.find()
     }
 }
 
