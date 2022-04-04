@@ -1,4 +1,4 @@
-import employeeRepo from '../js/repository/employee-repo.js'
+import employeeRepo from './js/repository/employee-repo.js'
 
 window.onload = async () => {
     window.deleteEmployee = deleteEmployee
@@ -109,7 +109,8 @@ function formToObject(formElement) {
     return data;
 }
 
+
 async function loadPage(pageName) {
-    const pageContent = await fetch(`../pages/${pageName}`)
+    const pageContent = await fetch(`./pages/${pageName}`)
     appContainer.innerHTML = await pageContent.text()
 }

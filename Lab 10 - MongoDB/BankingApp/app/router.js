@@ -14,14 +14,14 @@ router.route('/accounts')
 router.route('/accounts/stats')
     .get(accountService.getStats)
 
+router.route('/accounts/transactions')
+    .get(accountService.getTransactions)
+
 router.route('/accounts/:acctNo')
     .get(accountService.getAccount)
     .delete(accountService.deleteAccount)
 
 router.route('/accounts/:acctNo/trans')
     .post(accountService.addTransaction)
-
-
-
 
 export default router
