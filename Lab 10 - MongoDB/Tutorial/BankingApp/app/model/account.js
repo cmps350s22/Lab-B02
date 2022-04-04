@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
+const options = {
+    toJSON: {
+        virtuals: true
+    }
+}
 const accountSchema = new Schema({
     acctType: {
         type: String,
@@ -12,19 +17,23 @@ const accountSchema = new Schema({
         min: [0, 'min balance can not be negative'],
         required: [true, 'balance is a required field']
     }
-})
-accountSchema.virtual('accountNo', function () {
-   return this._id
-})
-
-accountSchema.virtual('minBalance', function () {
-    if (this.acctType === 'Saving')
-        return 1000
+}, options)
+accountSchema.virtual('acctNo').get(function () {
+    return this._id
 })
 
-accountSchema.virtual('profit', function () {
-    if (this.acctType === 'Saving')
-        return this.balance * 0.05
-})
+accountSchema
+    .virtual('minBalance')
+    .get(function () {
+        if (this.acctType === 'Saving')
+            return 1000
+    })
+
+accountSchema
+    .virtual('profit')
+    .get(function () {
+        if (this.acctType === 'Saving')
+            return this.balance * 0.05
+    })
 
 export default mongoose.model('Account', accountSchema)

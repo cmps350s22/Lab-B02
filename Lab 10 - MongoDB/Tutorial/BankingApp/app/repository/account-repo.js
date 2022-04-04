@@ -71,14 +71,16 @@ export default class AccountRepo {
 
     async addTransaction(transaction) {
         transaction.amount = parseInt(transaction.amount.toString());
+
+        const account = await this.getAccount(transaction.acctNo)
+
         try {
-            const account = this.getAccount(transaction.acctNo)
-
-            if (transaction.transType == 'Deposit')
-                account.balance += transaction.amount
-            else
-                account.balance -= transaction.amount
-
+            if (transaction.transType == 'Deposit') {
+                account.balance += parseInt(transaction.amount.toString());
+            } else {
+                account.balance -= parseInt(transaction.amount.toString());
+            }
+            console.log(account)
             await account.save()
             return await Transaction.create(transaction)
         } catch (err) {
@@ -88,6 +90,24 @@ export default class AccountRepo {
 
     async getTransactions() {
         return Transaction.find()
+    }
+
+    async getStats() {
+        return Account.aggregate([
+            {
+                $group: {
+                    _id: "$acctType",
+                    totalSum: {
+                        $sum: "$balance"
+                    },
+                    numberOfAccounts: {
+                        $sum: 1
+                    }
+                }
+            }
+            // {$sort: -1},
+            // {$limit: 1}
+        ])
     }
 }
 
