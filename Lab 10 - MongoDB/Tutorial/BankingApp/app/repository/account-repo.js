@@ -1,84 +1,29 @@
-import fs from 'fs-extra';
-import path from 'path';
-
-import SavingAccount from '../model/saving-account.js';
-import CurrentAccount from '../model/current-account.js';
+import Account from '../model/account.js'
 
 export default class AccountRepo {
 
-    constructor() {
-        this.accountsFilePath = path.join(path.resolve(), 'data/accounts.json');
-    }
-
     //Get account from accounts.json file
     async getAccounts(acctType) {
-        let accounts = await fs.readJson(this.accountsFilePath);
-
-        if (acctType && acctType != 'All') accounts = accounts.filter(acct => acct.acctType === acctType);
-
-        //This will add Account methods back to the deserialized account.
-        for (const acct of accounts) {
-            if (acct.acctType === "Current")
-                Object.setPrototypeOf(acct, CurrentAccount.prototype);
-            else
-                Object.setPrototypeOf(acct, SavingAccount.prototype);
-        }
-        return accounts;
+        if (acctType && acctType != 'All')
+            return Account.find({acctType})
+        return Account.find();
     }
 
     //Get account by accountNo
     async getAccount(accountNo) {
-        try {
-            const accounts = await this.getAccounts();
-            return accounts.find(account => account.accountNo == accountNo);
-        } catch (err) {
-            throw err;
-        }
+        return Account.findOne({_id: accountNo})
     }
 
     async addAccount(account) {
-        account.accountNo = Date.now();
-        account.balance = parseInt(account.balance.toString());
-        if (account.acctType === 'Saving')
-            account.minimumBalance = 1000;
-        else
-            account.monthlyFee = 15;
-
-        try {
-            const accounts = await this.getAccounts();
-            accounts.push(account);
-            return await this.saveAccounts(accounts);
-        } catch (err) {
-            console.log(err);
-        }
+        return Account.create(account)
     }
 
     async deleteAccount(accountNo) {
-        try {
-            const accounts = await this.getAccounts();
-            const index = accounts.findIndex(acct => acct.accountNo == accountNo);
-            if (index >= 0) {
-                accounts.splice(index, 1);
-                return await this.saveAccounts(accounts);
-            }
-        } catch (err) {
-            throw err;
-        }
+        return Account.deleteOne({_id: accountNo})
     }
 
     async updateAccount(account) {
-        try {
-            const accounts = await this.getAccounts();
-            const index = accounts.findIndex(acct => acct.accountNo == account.accountNo);
-            if (index >= 0) {
-                accounts[index] = account;
-                return await this.saveAccounts(accounts);
-            }
-
-            return -1;
-        } catch (err) {
-            throw err;
-        }
+        return Account.findOneAndUpdate(account.accountNo,account )
     }
 
     async sumBalance() {

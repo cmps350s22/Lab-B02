@@ -13,6 +13,10 @@ const accountSchema = new Schema({
         required: [true, 'balance is a required field']
     }
 })
+accountSchema.virtual('accountNo', function () {
+   return this._id
+})
+
 accountSchema.virtual('minBalance', function () {
     if (this.acctType === 'Saving')
         return 1000
