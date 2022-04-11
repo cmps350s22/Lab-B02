@@ -1,15 +1,29 @@
-/*
-1)	We need to read data from two files. course.json and staff.json. Both using callbacks.
-2)	We need finally print all courses with their corresponding instructor names.
-a)	Instructor name can be found at the staff file.
-b)	Use staffNo in staff.json property to match the instructorId from course.json
-3)	Create two functions getCourses and setInstructorNames.
-function getCourses(cb)
-	function setInstrctorNames(courses , cb)
-4)	Instructor names are set as a new property to the course object in the setInstrctorNames function.
-
- */
+// /*
+// 1)	We need to read data from two files. course.json and staff.json. Both using callbacks.
+// 2)	We need finally print all courses with their corresponding instructor names.
+// a)	Instructor name can be found at the staff file.
+// b)	Use staffNo in staff.json property to match the instructorId from course.json
+// 3)	Create two functions getCourses and setInstructorNames.
+// function getCourses(cb)
+// 	function setInstrctorNames(courses , cb)
+// 4)	Instructor names are set as a new property to the course object in the setInstrctorNames function.
+//
+//  */
 import fs from 'fs'
+
+// {
+//     "crn": 107,
+//     "courseCode": "GENG 107",
+//     "courseName": "Engineering Skills and Ethics",
+//     "semester": "Fall 2015",
+//     "instructorId": 3,
+//     "instructor" : "Jaber ibn Hayyan",
+//     "students": [
+//     "Fn2",
+//     "Fn3",
+//     "Fn7"
+// ]
+
 
 function setStudentsNames(courses, cb) {
     fs.readFile('data/student.json', (err, data) => {
@@ -49,7 +63,7 @@ function getCourses(cb) {
             const courses = JSON.parse(data)
             setInstructorNames(courses, (err, data) => {
                 if (!err)
-                    setStudentsNames(courses, cb)
+                    setStudentsNames(data, cb)
                 else {
                     cb(err, null)
                 }
@@ -64,5 +78,5 @@ function getCourses(cb) {
 getCourses((err, data) => {
     if (!err) console.log(data)
 })
-
-
+//
+//
