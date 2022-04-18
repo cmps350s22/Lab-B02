@@ -2,6 +2,7 @@ import fetch from 'node-fetch';
 
 export default class CourseRepository{
     constructor() {
+
     }
     async getPrograms(){
         const data = await fetch('https://cmps356s17.github.io/data/ceng-programs.json');
@@ -15,5 +16,6 @@ export default class CourseRepository{
     }
 }
 
-new CourseRepository().getCourses("AUP").then(courses => console.log(courses))
+// new CourseRepository().getPrograms().then(programs => console.log(programs))
+new CourseRepository().getCourses("CE").then(courses => console.log(courses))
 
