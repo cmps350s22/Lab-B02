@@ -1,10 +1,12 @@
 import CourseRepository from "../repo/course-repository.js";
+
 const courseRepository = new CourseRepository()
 
 export default class CourseService {
     constructor() {
 
     }
+
     async getPrograms(req, res) {
         try {
             const programs = await courseRepository.getPrograms();
@@ -30,21 +32,23 @@ export default class CourseService {
 
     async renderIndex(req, res) {
         try {
-            res.render('index')
+            res.render('index', {title: 'Index'})
         } catch (e) {
             res.send(500).send(e);
         }
     }
+
     async renderCourses(req, res) {
         try {
-            res.render('courses')
+            res.render('courses', {title: 'Courses'})
         } catch (e) {
             res.send(500).send(e);
         }
     }
+
     async renderStudents(req, res) {
         try {
-            res.render('students')
+            res.render('students', {title: 'Students'})
         } catch (e) {
             res.send(500).send(e);
         }
