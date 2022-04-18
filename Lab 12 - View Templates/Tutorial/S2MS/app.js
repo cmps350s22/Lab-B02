@@ -8,7 +8,12 @@ const port = 5000
 const app = express()
 
 //two types [dynamic , static]
-app.engine("hbs", engine({extname: "hbs", defaultLayout: "main", layoutsDir: "views/layouts/"}))
+app.engine("hbs", engine({
+    extname: "hbs",
+    defaultLayout: "main",
+    layoutsDir: "views/layouts/"
+}))
+
 app.set("view engine", "hbs")
 app.set("views", "views")
 app.use(express.static('views'))
