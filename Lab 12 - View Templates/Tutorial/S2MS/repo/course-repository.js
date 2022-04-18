@@ -15,7 +15,7 @@ export default class CourseRepository{
         return courses.filter(c=>c.program === programCode.toUpperCase());
     }
 }
-
+//
 // new CourseRepository().getPrograms().then(programs => console.log(programs))
-new CourseRepository().getCourses("CE").then(courses => console.log(courses))
+// new CourseRepository().getCourses("CS").then(courses => console.log(courses))
 
