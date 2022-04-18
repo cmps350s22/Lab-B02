@@ -20,7 +20,6 @@ export default class Employee {
                 </td>
          </tr>`
     }
-
     toCard() {
         return `
             <div class="card">
