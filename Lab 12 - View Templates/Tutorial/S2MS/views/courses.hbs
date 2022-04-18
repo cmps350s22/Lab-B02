@@ -1,8 +1,8 @@
 <h1>Programs</h1>
 
-<select name="" id="" class="form-control">
+<select name="" id="" class="form-control" onchange="getCourses(this.value)">
     {{#each programs as |p|}}
-        <option value="{{p.program}}">{{p.code}} - {{p.name}}</option>
+        <option value="{{p.code}}">{{p.name}}</option>
     {{/each}}
 </select>
 
